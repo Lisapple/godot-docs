@@ -121,7 +121,25 @@ Member Function Description
 
 Create a new surface (:ref:`get_surface_count<class_Mesh_get_surface_count>` that will become surf_idx for this.
 
-Surfaces are created to be rendered using a "primitive", which may be PRIMITIVE_POINTS, PRIMITIVE_LINES, PRIMITIVE_LINE_STRIP, PRIMITIVE_LINE_LOOP, PRIMITIVE_TRIANGLES, PRIMITIVE_TRIANGLE_STRIP, PRIMITIVE_TRIANGLE_FAN. (As a note, when using indices, it is recommended to only use just points, lines or triangles).
+Surfaces are created to be rendered using a "primitive", which may be PRIMITIVE_POINTS, PRIMITIVE_LINES, PRIMITIVE_LINE_STRIP, PRIMITIVE_LINE_LOOP, PRIMITIVE_TRIANGLES, PRIMITIVE_TRIANGLE_STRIP, PRIMITIVE_TRIANGLE_FAN. (As a note, when using indices, it is recommended to only use just points, lines or triangles). For example adding a two triangles surface with up direction normals and UVs looks like
+
+::
+
+    var arrays = []
+    arrays.resize(Mesh.ARRAY_INDEX+1) # Set excepted size that would contain all possible ARRAY_* indices
+    arrays[Mesh.ARRAY_VERTEX] = Vector3Array([
+    	Vector3(0.5, 0.5, 0.5), Vector3(-0.5, 0.5, 0.5), Vector3(0.5, 0.5, -0.5),
+    	Vector3(-0.5, 0.5, -0.5), Vector3(0.5, 0.5, -0.5), Vector3(-0.5, 0.5, 0.5)
+    ])
+    arrays[Mesh.ARRAY_NORMAL] = Vector3Array([
+    	Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0),
+    	Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)
+    ])
+    arrays[Mesh.ARRAY_TEX_UV] = Vector2Array([
+    	Vector2(0, 1),Vector2(1, 1),Vector2(0, 0),
+    	Vector2(1, 0),Vector2(0, 0),Vector2(1, 1)
+    ])
+    add_surface(Mesh.PRIMITIVE_TRIANGLES, arrays)
 
 The format of a surface determines which arrays it will allocate and hold, so "format" is a combination of ARRAY_FORMAT\_\* mask constants ORed together. ARRAY_FORMAT_VERTEX must be always present. "array_len" determines the amount of vertices in the array (not primitives!). if ARRAY_FORMAT_INDEX is in the format mask, then it means that an index array will be allocated and "index_array_len" must be passed.
 
