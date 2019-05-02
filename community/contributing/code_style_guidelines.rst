@@ -117,6 +117,8 @@ Here is a non-exhaustive list of beautifier plugins for some IDEs:
 - Visual Studio Code: `Clang-Format <https://marketplace.visualstudio.com/items?itemName=xaver.clang-format>`__
 - Visual Studio: `ClangFormat <https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.ClangFormat>`__
 - vim: `vim-clang-format <https://github.com/rhysd/vim-clang-format>`__
+- Sublime Text: `Clang Format <https://packagecontrol.io/packages/Clang%20Format>`__
+
 
 (Pull requests welcome to extend this list with tested plugins.)
 
